@@ -37,20 +37,20 @@ def main():
         y_pred=model.predict(df.to_numpy())
         res = pd.DataFrame(y_pred,columns=["Predizione"])
         st.write(res)
-    buffer = io.BytesIO()
-    # download button 2 to download dataframe as xlsx
-    with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
-        # Write each dataframe to a different worksheet.
-        res.to_excel(writer, sheet_name='Sheet1', index=False)
-        # Close the Pandas Excel writer and output the Excel file to the buffer
-        writer.save()
+        buffer = io.BytesIO()
+        # download button 2 to download dataframe as xlsx
+        with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
+            # Write each dataframe to a different worksheet.
+            res.to_excel(writer, sheet_name='Sheet1', index=False)
+            # Close the Pandas Excel writer and output the Excel file to the buffer
+            writer.save()
 
-        download2 = st.download_button(
-            label="Download data as Excel",
-            data=buffer,
-            file_name='large_df.xlsx',
-            mime='application/vnd.ms-excel'
-        )
+            download2 = st.download_button(
+                label="Download data as Excel",
+                data=buffer,
+                file_name='large_df.xlsx',
+                mime='application/vnd.ms-excel'
+            )
         
 if __name__=="__main__":
     main()
