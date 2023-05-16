@@ -36,6 +36,7 @@ def main():
         st.write(df)
         y_pred=model.predict(df.to_numpy())
         res = pd.DataFrame(y_pred,columns=["Predizione"])
+        st.write("Questa è la predizione!")
         st.write(res)
         buffer = io.BytesIO()
         # download button 2 to download dataframe as xlsx
